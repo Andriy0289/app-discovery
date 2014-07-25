@@ -710,7 +710,9 @@ header {
   text-align: center;
 }
 .app-screenshot img {
-    max-width: 100%; 
+    /*max-width: 100%; */
+    width: 260px;
+    margin: 0 auto;
 }
 .app-screenshot a {
     max-width: 100%;
