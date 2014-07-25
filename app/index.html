@@ -18,7 +18,7 @@
 </head>
 <body>
   <header>
-    <div class="logo-block">
+    <div class="logo-block" ng-controller="NavigationCtrl">
         <div class="close-that-popup" style="display:none;"></div>
         <a href="javascript:;" class="tap-menu" ng-click="hiddenMenu='active'"></a>
         <div class="main_menu transition-links" ng-class="hiddenMenu">
@@ -28,47 +28,51 @@
             </a>
           </div>
           <ul>
-            <li><a href="#search" ng-click="hiddenMenu=''" title="">Search</a></li>
-            <li><a href="#explore" ng-click="hiddenMenu=''" title="">Explore</a></li>
-            <li><a href="#tags" ng-click="hiddenMenu=''" title="">Tags</a></li>
-            <li><a href="#categories" ng-click="hiddenMenu=''" title="">Categories</a></li>
-            <li><a href="javascript:;" ng-click="tapMenu='active'" title="">Settings</a></li>
-            <li><a href="javascript:;" ng-click="hiddenMenu=''" title="">About</a></li>
+            <li><a href="#search" ng-click="hiddenMenu=''; tapMenu=''" title="">Search</a></li>
+            <li><a href="#explore" ng-click="hiddenMenu=''; tapMenu=''" title="">Explore</a></li>
+            <li><a href="#tags" ng-click="hiddenMenu=''; tapMenu=''" title="">Tags</a></li>
+            <li><a href="#categories" ng-click="hiddenMenu=''; tapMenu=''" title="">Categories</a></li>
+            <li>
+              <a href="javascript:;" ng-click="tapMenu='active'" ng-model="checked" title="">Settings</a>
+                <div class="tap-menu-block" ng-class="tapMenu" ng-hide="checked">
+                  <div class="tap-inner-block stores-block" ng-if="isAndroid">
+                    <h3>Supported App Stores</h3>
+                    <div class="tap-inner-btns clr" id="stores-template">
+                      <label ng-if="isDesctop" for="check-itunes">iTunes<input type="radio" id="check-itunes" name="checkStores" value="1"></label>
+                      <label for="check-google">Google Play<input type="radio" id="check-google" name="checkStores" value="2"></label>
+                      <label for="check-amazon">Amazon<input type="radio" id="check-amazon" name="checkStores" value="3"></label>
+                      <label for="check-wandoujia">Wandoujia<input type="radio" id="check-wandoujia" name="checkStores" value="5"></label>
+                      <label for="check-nook">Nook<input type="radio" id="check-nook" name="checkStores" value="4"></label>
+                    </div>
+                  </div>
+
+                  <div class="tap-inner-block dev-template-block" ng-if="isIos">
+                    <h3>Supported Devices</h3>
+                    <div class="tap-inner-btns clr" id="devices-template">
+                      <label for="check-phones">Phones<input type="radio" id="check-phones" name="checkDevice" value="phone"></label>
+                      <label for="check-tablets">Tablets<input type="radio" id="check-tablets" name="checkDevice" value="tablet"></label>
+                    </div>
+                  </div>
+
+                  <div class="tap-inner-block dispTemplate-block">
+                    <h3>Display Style</h3>
+                    <div class="tap-inner-btns clr" id="displayTemplate">
+                      <label for="check-simple">Simple<input type="radio" id="check-simple" name="checkDisplaySt" value="true"></label>
+                      <label for="check-colorful">Colorful<input type="radio" id="check-colorful" name="checkDisplaySt" value="false"></label>
+                    </div>
+                  </div>
+                </div><!-- /.tap-menu-block -->
+            </li>
+            <li><a href="javascript:;" ng-click="hiddenMenu=''; tapMenu=''" title="">About</a></li>
           </ul>
         </div>
-        <div class="tap-menu-block" ng-class="tapMenu">
-          <div class="tap-inner-block stores-block">
-            <h3>Supported App Stores</h3>
-            
-            <div class="tap-inner-btns clr" id="stores-template">
-              <label for="check-itunes">iTunes<input type="radio" id="check-itunes" name="checkStores" value="1"></label>
-              <label for="check-google">Google Play<input type="radio" id="check-google" name="checkStores" value="2"></label>
-              <label for="check-amazon">Amazon<input type="radio" id="check-amazon" name="checkStores" value="3"></label>
-              <label for="check-wandoujia">Wandoujia<input type="radio" id="check-wandoujia" name="checkStores" value="5"></label>
-              <label for="check-nook">Nook<input type="radio" id="check-nook" name="checkStores" value="4"></label>
-            </div>
-          </div>
-
-          <div class="tap-inner-block dev-template-block">
-            <h3>Supported Devices</h3>
-            <div class="tap-inner-btns clr" id="devices-template">
-              <label for="check-phones">Phones<input type="radio" id="check-phones" name="checkDevice" value="phone"></label>
-              <label for="check-tablets">Tablets<input type="radio" id="check-tablets" name="checkDevice" value="tablet"></label>
-            </div>
-          </div>
-
-          <div class="tap-inner-block dispTemplate-block">
-            <h3>Display Style</h3>
-            <div class="tap-inner-btns clr" id="displayTemplate">
-              <label for="check-simple">Simple<input type="radio" id="check-simple" name="checkDisplaySt" value="true"></label>
-              <label for="check-colorful">Colorful<input type="radio" id="check-colorful" name="checkDisplaySt" value="false"></label>
-            </div>
-          </div>
-        </div><!-- /.tap-menu-block -->
+        
         <a href="http://www.airomo.com/" target="_blank" class="logo-link">
             <div class="logo"></div>
         </a>
     </div>
+  </header>
+
     
   <div ng-view></div>
 

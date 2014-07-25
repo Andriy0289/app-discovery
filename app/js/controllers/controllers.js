@@ -3,6 +3,22 @@
 
   var ctrl = angular.module('controllers', []);
 
+  ctrl.controller('NavigationCtrl', function($scope) {
+    $scope.isIos = true;
+    $scope.isAndroid = true;
+    $scope.isDesctop = true;
+
+    if( /android/i.test( navigator.userAgent.toLowerCase() ) ) {
+      $scope.isIos = false;
+      $scope.isDesctop = false;
+    }
+
+    if( /iphone|ipad|ipod/i.test( navigator.userAgent.toLowerCase() ) ) {
+      $scope.isAndroid = false;
+      $scope.isDesctop = false;
+    }
+  });
+
   ctrl.controller('SearchCtrl', function($scope, $location, appsFactory) {
 
     var options = {};
