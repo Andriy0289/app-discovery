@@ -1,0 +1,51 @@
+	<div class="search-block" ng-controller="ExploreCtrl">
+	  <input type="text" id="query-input" spellcheck="true" required ng-model="query" ng-keyup="searchApps(query)" placeholder="Search for apps and games">
+	  <span class="clear-q" style="display:none;">×</span>
+	  <div class="default explore" ng-class="showDefault">
+	  	<p>Explore</p>
+	  </div>
+	  <button type="submit" class="go-btn" ng-click="searchApps(query)">
+	    <img class="search-text-icon" src="img/search.png" ng-click="showDefault='hide'">
+	    <img class="search-button-loader" style="display:none;" src="img/loader.gif">
+	  </button>
+	  <div class="clr"></div>
+	</div>
+  <div class="filters-block">
+    <ul class="cat-selector">
+      <li class="l-item cat-apps"><a href="javascript:;" ng-click="filterApp('apps')">Apps</a></li>
+      <li class="l-item cat-games"><a href="javascript:;" ng-click="filterApp('games')">Games</a></li>
+    </ul> 
+    <ul class="val-selector">
+      <li class="m-item val-river"><a href="javascript:;" ng-click="sortApp('river')">River</a></li>
+      <li class="m-item val-popular"><a href="javascript:;" ng-click="sortApp('popular')">Popular</a></li>
+      <li class="m-item val-newest"><a href="javascript:;" ng-click="sortApp('newest')">Newest</a></li>
+    </ul>
+    <div class="clr"></div>
+  </div>
+</header>
+<div id="main-holder" class="clr">
+	<div ng-repeat="app in apps" class="the-app">
+    <div class="app-data-row">
+      <div class="app-icon-holder">
+        <a href="{{app.nativeUrl}}" target="_blank">
+          <img src="{{app.icon}}" class="app-icon" width="50" height="50">
+        </a>
+      </div>
+      <div class="app-data-text" style="">
+        <div class="app-title"><a href="{{app.nativeUrl}}" target="_blank">{{app.title}}</a></div>
+        <div class="app-data">
+          <a onclick="" class="app-price"><span>{{app.price}}</span></a>
+        </div> 
+      </div>
+    <div class="clr"></div>
+    </div> 
+    <div class="app-description">
+      <div class="app-rating">
+        <div class="rating">
+          {{app.rating}}
+        </div>
+      </div>
+      {{app.short}}
+    </div>
+  </div>
+</div>

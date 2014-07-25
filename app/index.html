@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="respApps" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="css/normalize.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo-block">
+        <div class="close-that-popup" style="display:none;"></div>
+        <a href="javascript:;" class="tap-menu" ng-click="hiddenMenu='active'"></a>
+        <div class="main_menu transition-links" ng-class="hiddenMenu">
+          <div class="menu_logo">
+            <a href="http://www.airomo.net/" title="" target="_blank" ng-click="hiddenMenu=''">
+              <img src="img/menu_logo.png" alt="">
+            </a>
+          </div>
+          <ul>
+            <li><a href="#search" ng-click="hiddenMenu=''" title="">Search</a></li>
+            <li><a href="#explore" ng-click="hiddenMenu=''" title="">Explore</a></li>
+            <li><a href="#tags" ng-click="hiddenMenu=''" title="">Tags</a></li>
+            <li><a href="#categories" ng-click="hiddenMenu=''" title="">Categories</a></li>
+            <li><a href="javascript:;" ng-click="tapMenu='active'" title="">Settings</a></li>
+            <li><a href="javascript:;" ng-click="hiddenMenu=''" title="">About</a></li>
+          </ul>
+        </div>
+        <div class="tap-menu-block" ng-class="tapMenu">
+          <div class="tap-inner-block stores-block">
+            <h3>Supported App Stores</h3>
+            
+            <div class="tap-inner-btns clr" id="stores-template">
+              <label for="check-itunes">iTunes<input type="radio" id="check-itunes" name="checkStores" value="1"></label>
+              <label for="check-google">Google Play<input type="radio" id="check-google" name="checkStores" value="2"></label>
+              <label for="check-amazon">Amazon<input type="radio" id="check-amazon" name="checkStores" value="3"></label>
+              <label for="check-wandoujia">Wandoujia<input type="radio" id="check-wandoujia" name="checkStores" value="5"></label>
+              <label for="check-nook">Nook<input type="radio" id="check-nook" name="checkStores" value="4"></label>
+            </div>
+          </div>
+
+          <div class="tap-inner-block dev-template-block">
+            <h3>Supported Devices</h3>
+            <div class="tap-inner-btns clr" id="devices-template">
+              <label for="check-phones">Phones<input type="radio" id="check-phones" name="checkDevice" value="phone"></label>
+              <label for="check-tablets">Tablets<input type="radio" id="check-tablets" name="checkDevice" value="tablet"></label>
+            </div>
+          </div>
+
+          <div class="tap-inner-block dispTemplate-block">
+            <h3>Display Style</h3>
+            <div class="tap-inner-btns clr" id="displayTemplate">
+              <label for="check-simple">Simple<input type="radio" id="check-simple" name="checkDisplaySt" value="true"></label>
+              <label for="check-colorful">Colorful<input type="radio" id="check-colorful" name="checkDisplaySt" value="false"></label>
+            </div>
+          </div>
+        </div><!-- /.tap-menu-block -->
+        <a href="http://www.airomo.com/" target="_blank" class="logo-link">
+            <div class="logo"></div>
+        </a>
+    </div>
+    
+  <div ng-view></div>
+
+  <div class="go-top-cont" style="display:none;">
+    <img class="search-button-loader" style="display:none;" src="img/loader.gif">
+  </div>
+  <a href="javascript:;" style="display:none;" class="go-top">&#9650;</a>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/api_airomo_new.js"></script>
+  <script type="text/javascript" src="js/jquery.grid-a-licious.min.js"></script>
+  <!--<script type="text/javascript" src="js/jquery.history.js"></script>-->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+
+  <script src="js/services/services.js"></script>
+
+  <script src="js/controllers/controllers.js"></script>
+  
+  <script src="js/filters/filters.js"></script>
+  <script src="js/directives/directives.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

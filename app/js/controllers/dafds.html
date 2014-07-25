@@ -1,0 +1,3 @@
+<ul class="navigation">
+        <li ng-repeat="item in items" class="item" ng-class="{'active': item.id == states.activeItem}" ng-click="states.activeItem=item.id">{{item.title}}</li>
+    </ul>
