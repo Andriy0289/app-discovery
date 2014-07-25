@@ -3,12 +3,20 @@
 
   var ctrl = angular.module('controllers', []);
 
-  ctrl.controller('SearchCtrl', function($scope, appsFactory) {
-
+  ctrl.controller('SearchCtrl', function($scope, $location, appsFactory) {
 
     var options = {};
 
-    $scope.apps = [];
+    $scope.apps = {};
+
+    var fetch = function(options){
+      appsFactory.fetchApplications(options, function(err, result){
+        $scope.$apply(function(){
+          $location.search(options);
+          $scope.apps = result.result;
+        });
+      });
+    };
 
     $scope.getApp = function(type) {
       if ('games' === type) {
@@ -19,24 +27,20 @@
         options['categories'] = [];
       }
 
-      appsFactory.fetchApplications(options, function(err, result) {
-        $scope.$apply(function(){
-          $scope.apps = result.result;
-        });
-      });
+      fetch(options);
     };
 
     $scope.sortApp = function(prices) {
       options['prices'] = (prices || 'all');
 
-      appsFactory.fetchApplications(options, function(err, result) {
-        $scope.$apply(function(){
-          $scope.apps = result.result;
-        });
-      });
+      fetch(options);
     };
 
-    
+    $scope.searchApps = function(query) {
+      options['query'] = $scope.query;
+
+      fetch(options);
+    };
 
     $scope.getApp();
   });
@@ -75,7 +79,7 @@
       options['query'] = $scope.query;
 
       fetch(options);
-    }
+    };
 
     $scope.sortApp();
   });

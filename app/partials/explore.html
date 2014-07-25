@@ -1,14 +1,17 @@
 	<div class="search-block" ng-controller="ExploreCtrl">
-	  <input type="text" id="query-input" spellcheck="true" required ng-model="query" ng-keyup="searchApps(query)" placeholder="Search for apps and games">
-	  <span class="clear-q" style="display:none;">×</span>
-	  <div class="default explore" ng-class="showDefault">
-	  	<p>Explore</p>
-	  </div>
-	  <button type="submit" class="go-btn" ng-click="searchApps(query)">
-	    <img class="search-text-icon" src="img/search.png" ng-click="showDefault='hide'">
-	    <img class="search-button-loader" style="display:none;" src="img/loader.gif">
-	  </button>
-	  <div class="clr"></div>
+    <form ng-submit="searchApps()">
+  	  <input type="text" id="query-input" spellcheck="true" ng-model="query" placeholder="Search for apps and games">
+  	  <span class="clear-q" style="display:none;">×</span>
+  	  <div class="default explore" ng-class="showDefault" ng-click="showDefault='hide'">
+  	  	<p>Explore</p>
+        <span></span>
+  	  </div>
+  	  <button type="submit" class="go-btn">
+  	    <img class="search-text-icon" src="img/search.png">
+  	    <img class="search-button-loader" style="display:none;" src="img/loader.gif">
+  	  </button>
+  	  <div class="clr"></div>
+    </form>
 	</div>
   <div class="filters-block">
     <ul class="cat-selector">
@@ -22,7 +25,7 @@
     </ul>
     <div class="clr"></div>
   </div>
-</header>
+<!-- </header> -->
 <div id="main-holder" class="clr">
 	<div ng-repeat="app in apps" class="the-app">
     <div class="app-data-row">
