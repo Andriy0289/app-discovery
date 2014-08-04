@@ -439,8 +439,8 @@ header {
   .l-item a { padding-left: 55px; }
   .l-item.cat-apps a { background: #a9afb3 url('../img/sprite2.png') no-repeat; background-position: 75% -110px;}
   .l-item.cat-games a { background: #a9afb3 url('../img/sprite2.png') no-repeat; background-position: 75% -173px; }
-  .l-item.cat-apps a:active, .l-item.cat-apps a:hover { background: #00a6c4 url('../img/sprite2.png') no-repeat; background-position: 75% -110px;}
-  .l-item.cat-games a:active, .l-item.cat-games a:hover { background: #00a6c4 url('../img/sprite2.png') no-repeat;background-position: 75% -173px;}
+  .l-item.cat-apps a.cur, .l-item.cat-apps a:hover { background: #00a6c4 url('../img/sprite2.png') no-repeat; background-position: 75% -110px;}
+  .l-item.cat-games a.cur, .l-item.cat-games a:hover { background: #00a6c4 url('../img/sprite2.png') no-repeat;background-position: 75% -173px;}
 
   #main-holder {
     width: 1870px;

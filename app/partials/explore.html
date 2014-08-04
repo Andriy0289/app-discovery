@@ -15,20 +15,20 @@
 	</div>
   <div class="filters-block">
     <ul class="cat-selector">
-      <li class="l-item cat-apps"><a href="javascript:;" ng-click="filterApp('apps')">Apps</a></li>
-      <li class="l-item cat-games"><a href="javascript:;" ng-click="filterApp('games')">Games</a></li>
+      <li class="l-item cat-apps"><a href="javascript:;" ng-class="{cur:filter=='apps'}" ng-click="filterApp('apps')">Apps</a></li>
+      <li class="l-item cat-games"><a href="javascript:;" ng-class="{cur:filter=='games'}" ng-click="filterApp('games')">Games</a></li>
     </ul> 
     <ul class="val-selector">
-      <li class="m-item val-river"><a href="javascript:;" ng-click="sortApp('river')">River</a></li>
-      <li class="m-item val-popular"><a href="javascript:;" ng-click="sortApp('popular')">Popular</a></li>
-      <li class="m-item val-newest"><a href="javascript:;" ng-click="sortApp('newest')">Newest</a></li>
+      <li class="m-item val-river"><a href="javascript:;" ng-class="{cur:order=='river'}" ng-click="sortApp('river')">River</a></li>
+      <li class="m-item val-popular"><a href="javascript:;" ng-class="{cur:order=='popular'}" ng-click="sortApp('popular')">Popular</a></li>
+      <li class="m-item val-newest"><a href="javascript:;" ng-class="{cur:order=='newest'}" ng-click="sortApp('newest')">Newest</a></li>
     </ul>
     <div class="clr"></div>
   </div>
 <!-- </header> -->
 
 <div id="main-holder" class="clr">
-  <div infinite-scroll='sortApp()'>
+  <!-- <div infinite-scroll='sortApp()'> -->
   	<div ng-repeat="app in apps" class="the-app">
       <div class="app-data-row">
         <div class="app-icon-holder">
@@ -49,10 +49,14 @@
       </div>
       <div class="app-description">
         <div class="app-rating">
-          <div class="rating">
+          <!-- <angular-ratings ng-model="avg_rating"></angular-ratings> -->
+          <!-- <div class="rating" rating score="app.rating" max="5"> -->
+            <!-- <angular-ratings ng-model="rating"> -->
+            <!-- <angular-ratings ng-model="app.rating"></angular-ratings> -->
+            <!-- <div rating score="app.rating" max="5"> -->
             {{app.rating}}
-          </div>
+          <!-- </div> -->
         </div>{{app.description | limitTo:90}}...</div>
     </div>
-  </div>
+  <!-- </div> -->
 </div>

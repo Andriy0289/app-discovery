@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var ctrl = angular.module('controllers', ['infinite-scroll']);
+  var ctrl = angular.module('controllers', []);
 
   ctrl.controller('NavigationCtrl', function($scope, $location, appsFactory) {
     $scope.isIos = true;
@@ -96,17 +96,41 @@
           width: 300,
           gutter: 10,
           selector: '.the-app',
-          animate: true
+          animate: true,
+          animationOptions: {
+            complete: $scope.onComplete()
+          }
         });
-        $('.galcolumn:empty').fadeOut(0);
       });
+    };
+
+    $scope.onComplete = function() {
+      $('.galcolumn:empty').remove();
+
+      $(document).bind('scroll', function() {
+        console.log(raw.scrollTop +' + '+ raw.offsetHeight + ' >= ' + raw.scrollHeight);
+
+          var makeboxes = function(){
+            appsFactory.fetchApplications(options, function(err, result) {
+              $scope.$apply(function(){
+                $scope.apps.concat(result.result);
+              });
+            });
+          };
+
+          if (document.documentElement.clientHeight + $(document).scrollTop() >= document.body.offsetHeight) {
+            $("#main-holder").gridalicious('append', makeboxes());
+          }
+        });
     };
 
     $scope.filterApp = function(type) {
       if ('games' === type) {
         options['categories'] = 6;
+        $scope.filter = type;
       } else {
         options['categories'] = -6;
+        $scope.filter = type;
       }
 
       fetch(options);
@@ -115,6 +139,7 @@
 
     $scope.sortApp = function(order) {
       options['order'] = (order || 'newest');
+      $scope.order = (order || 'newest');
       $location.search(options);
       fetch(options);
       grid();
@@ -127,13 +152,14 @@
       fetch(options);
     };
 
-    $scope.scrollEvent = function(){
+    $scope.menuItems = function(item) {
+      $scope.menuItem = item;
+      console.log('menuItem' + item);
+    }
 
-    };
-
-    // $scope.sortApp();
+    $scope.sortApp();
   });
-  
+
   ctrl.controller('CategoryCtrl', function($scope) {
 
   });
