@@ -28,8 +28,8 @@
             </a>
           </div>
           <ul>
-            <li><a href="#search" ng-click="hiddenMenu=''; tapMenu=''" title="">Search</a></li>
-            <li><a href="#explore" ng-click="hiddenMenu=''; tapMenu=''" title="">Explore</a></li>
+            <li><a href="http://static.airomo.net/widgets/search-uc/sresults.html" ng-click="hiddenMenu=''; tapMenu=''" title="">Search</a></li>
+            <li><a href="#explore?order=newest" ng-click="hiddenMenu=''; tapMenu=''" title="">Explore</a></li>
             <li><a href="#tags" ng-click="hiddenMenu=''; tapMenu=''" title="">Tags</a></li>
             <li><a href="#categories" ng-click="hiddenMenu=''; tapMenu=''" title="">Categories</a></li>
             <li>
@@ -38,47 +38,47 @@
                   <div class="tap-inner-block stores-block" ng-if="isAndroid">
                     <h3>Supported App Stores</h3>
                     <div class="tap-inner-btns clr" id="stores-template">
-                      <label ng-if="isDesctop" for="check-itunes">iTunes<input type="radio" id="check-itunes" name="checkStores" value="1"></label>
-                      <label for="check-google">Google Play<input type="radio" id="check-google" name="checkStores" value="2"></label>
-                      <label for="check-amazon">Amazon<input type="radio" id="check-amazon" name="checkStores" value="3"></label>
-                      <label for="check-wandoujia">Wandoujia<input type="radio" id="check-wandoujia" name="checkStores" value="5"></label>
-                      <label for="check-nook">Nook<input type="radio" id="check-nook" name="checkStores" value="4"></label>
+                      <label ng-if="isDesctop" ng-click="checkStore(1)" for="check-itunes">iTunes</label>
+                      <label for="check-google" ng-click="checkStore(2)">Google Play</label>
+                      <label for="check-amazon" ng-click="checkStore(3)">Amazon</label>
+                      <label for="check-wandoujia" ng-click="checkStore(4)">Wandoujia</label>
+                      <label for="check-nook" ng-click="checkStore(5)">Nook</label>
                     </div>
                   </div>
 
-                  <div class="tap-inner-block dev-template-block" ng-if="isIos">
+                 <!--  <div class="tap-inner-block dev-template-block" ng-if="isIos">
                     <h3>Supported Devices</h3>
                     <div class="tap-inner-btns clr" id="devices-template">
-                      <label for="check-phones">Phones<input type="radio" id="check-phones" name="checkDevice" value="phone"></label>
-                      <label for="check-tablets">Tablets<input type="radio" id="check-tablets" name="checkDevice" value="tablet"></label>
+                      <label ng-click="checkDevice(1)" for="check-phones">Phones</label>
+                      <label ng-click="checkDevice(2)" for="check-tablets">Tablets</label>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="tap-inner-block dispTemplate-block">
                     <h3>Display Style</h3>
                     <div class="tap-inner-btns clr" id="displayTemplate">
-                      <label for="check-simple">Simple<input type="radio" id="check-simple" name="checkDisplaySt" value="true"></label>
-                      <label for="check-colorful">Colorful<input type="radio" id="check-colorful" name="checkDisplaySt" value="false"></label>
+                      <label ng-click="hiddenScreen='true'" for="check-simple">Simple</label>
+                      <label ng-click="hiddenScreen='false'" for="check-colorful">Colorful</label>
                     </div>
                   </div>
                 </div><!-- /.tap-menu-block -->
             </li>
-            <li><a href="javascript:;" ng-click="hiddenMenu=''; tapMenu=''" title="">About</a></li>
+            <li><a href="http://www.airomo.com/" ng-click="hiddenMenu=''; tapMenu=''" title="">About</a></li>
           </ul>
         </div>
         
         <a href="http://www.airomo.com/" target="_blank" class="logo-link">
-            <div class="logo"></div>
+          <div class="logo"></div>
         </a>
     </div>
   </header>
-
     
   <div ng-view></div>
 
   <div class="go-top-cont" style="display:none;">
     <img class="search-button-loader" style="display:none;" src="img/loader.gif">
   </div>
+
   <a href="javascript:;" style="display:none;" class="go-top">&#9650;</a>
 
   <!--[if lt IE 7]>
@@ -93,6 +93,7 @@
   <script type="text/javascript" src="js/jquery.grid-a-licious.min.js"></script>
   <!--<script type="text/javascript" src="js/jquery.history.js"></script>-->
   <script src="bower_components/angular/angular.js"></script>
+  <script type='text/javascript' src='js/ng-infinite-scroll.min.js'></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
 
   <script src="js/services/services.js"></script>

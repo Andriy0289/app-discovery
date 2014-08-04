@@ -1,9 +1,9 @@
 (function(){
   'use strict';
 
-  var ctrl = angular.module('controllers', []);
+  var ctrl = angular.module('controllers', ['infinite-scroll']);
 
-  ctrl.controller('NavigationCtrl', function($scope) {
+  ctrl.controller('NavigationCtrl', function($scope, $location, appsFactory) {
     $scope.isIos = true;
     $scope.isAndroid = true;
     $scope.isDesctop = true;
@@ -17,6 +17,22 @@
       $scope.isAndroid = false;
       $scope.isDesctop = false;
     }
+
+    var options = {};
+
+    var fetch = function(options){
+      appsFactory.fetchApplications(options, function(err, result){
+        $scope.$apply(function(){
+          $location.search(options);
+          $scope.apps = result.result;
+        });
+      });
+    };
+
+    $scope.checkStore = function(stores) {
+      options['stores'] = stores;
+      fetch(options);
+    };
   });
 
   ctrl.controller('SearchCtrl', function($scope, $location, appsFactory) {
@@ -69,9 +85,20 @@
     var fetch = function(options){
       appsFactory.fetchApplications(options, function(err, result) {
         $scope.$apply(function(){
-          $location.search(options);
           $scope.apps = result.result;
         });
+      });
+    };
+
+    var grid = function(){
+      $scope.$watch("apps", function () { 
+        $("#main-holder").gridalicious({
+          width: 300,
+          gutter: 10,
+          selector: '.the-app',
+          animate: true
+        });
+        $('.galcolumn:empty').fadeOut(0);
       });
     };
 
@@ -83,11 +110,14 @@
       }
 
       fetch(options);
+      grid();
     };
 
     $scope.sortApp = function(order) {
       options['order'] = (order || 'newest');
+      $location.search(options);
       fetch(options);
+      grid();
       console.log($location.$$search.order);
     };
 
@@ -97,7 +127,11 @@
       fetch(options);
     };
 
-    $scope.sortApp();
+    $scope.scrollEvent = function(){
+
+    };
+
+    // $scope.sortApp();
   });
   
   ctrl.controller('CategoryCtrl', function($scope) {
