@@ -7,6 +7,7 @@
     $scope.isIos = true;
     $scope.isAndroid = true;
     $scope.isDesctop = true;
+    $scope.hideImgs = false;
 
     if( /android/i.test( navigator.userAgent.toLowerCase() ) ) {
       $scope.isIos = false;
@@ -32,6 +33,18 @@
     $scope.checkStore = function(stores) {
       options['stores'] = stores;
       fetch(options);
+      $scope.stores = stores;
+    };
+
+    $scope.hiddenScreen = function(hideImgs) {
+      fetch(options);
+
+      $scope.hideImgs = hideImgs;
+    };
+
+    $scope.menuItems = function(item) {
+      $scope.item = item;
+      console.log('item' + item);
     };
   });
 
@@ -108,7 +121,7 @@
       $('.galcolumn:empty').remove();
 
       $(document).bind('scroll', function() {
-        console.log(raw.scrollTop +' + '+ raw.offsetHeight + ' >= ' + raw.scrollHeight);
+        // console.log(raw.scrollTop +' + '+ raw.offsetHeight + ' >= ' + raw.scrollHeight);
 
           var makeboxes = function(){
             appsFactory.fetchApplications(options, function(err, result) {
@@ -152,10 +165,10 @@
       fetch(options);
     };
 
-    $scope.menuItems = function(item) {
-      $scope.menuItem = item;
-      console.log('menuItem' + item);
-    }
+   
+
+    $scope.custom = true;
+    $scope.menu = true;
 
     $scope.sortApp();
   });

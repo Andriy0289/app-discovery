@@ -20,29 +20,40 @@
   <header>
     <div class="logo-block" ng-controller="NavigationCtrl">
         <div class="close-that-popup" style="display:none;"></div>
-        <a href="javascript:;" class="tap-menu" ng-click="hiddenMenu='active'"></a>
-        <div class="main_menu transition-links" ng-class="hiddenMenu">
+        <!-- <a href="javascript:;" class="tap-menu" ng-click="hiddenMenu='active'"></a> -->
+        <a href="javascript:;" class="tap-menu" ng-click="menu=!menu"></a>
+        <div class="main_menu transition-links" ng-show="menu">
           <div class="menu_logo">
             <a href="http://www.airomo.net/" title="" target="_blank" ng-click="hiddenMenu=''">
               <img src="img/menu_logo.png" alt="">
             </a>
           </div>
           <ul>
-            <li ng-click="menuItems('search')" ng-class="{active:menuItem=='search'}"><a href="http://static.airomo.net/widgets/search-uc/sresults.html" ng-click="hiddenMenu=''; tapMenu=''" title="">Search</a></li>
-            <li ng-click="menuItems('explore')" ng-class="{active:menuItem=='explore'}"><a href="#explore?order=newest" ng-click="hiddenMenu=''; tapMenu=''" title="">Explore</a></li>
-            <li ng-click="menuItems('tags')" ng-class="{active:menuItem=='tags'}"><a href="#tags" ng-click="hiddenMenu=''; tapMenu=''" title="">Tags</a></li>
-            <li ng-click="menuItems('categories')" ng-class="{active:menuItem=='categories'}"><a href="#categories" ng-click="hiddenMenu=''; tapMenu=''" title="">Categories</a></li>
-            <li ng-click="menuItems('settings')" ng-class="{active:menuItem=='settings'}">
-              <a href="javascript:;" ng-click="tapMenu='active'" title="">Settings</a>
-                <div class="tap-menu-block" ng-class="tapMenu">
+            <li ng-click="menuItems('search')" ng-class="{active:item=='search'}">
+              <a href="http://static.airomo.net/widgets/search-uc/sresults.html" ng-click="menu=''; tapMenu=''" title="">Search</a>
+            </li>
+            <li ng-click="menuItems('explore')" ng-class="{active:item=='explore'}">
+              <a href="#explore?order=newest" ng-click="menu=''; tapMenu=''" title="">Explore</a>
+            </li>
+            <li ng-click="menuItems('tags')" ng-class="{active:item=='tags'}">
+              <a href="#tags" ng-click="menu=''; tapMenu=''" title="">Tags</a>
+            </li>
+            <li ng-click="menuItems('categories')" ng-class="{active:item=='categories'}">
+              <a href="#categories" ng-click="menu=''; tapMenu=''" title="">Categories</a>
+            </li>
+            <li ng-click="menuItems('settings')" ng-class="{active:item=='settings'}">
+              <!-- <a href="javascript:;" ng-click="tapMenu='active'" title="">Settings</a> -->
+              <a href="javascript:;" ng-click="custom=!custom" title="">Settings</a>
+                <!-- <div class="tap-menu-block" ng-class="tapMenu"> -->
+                <div class="tap-menu-block" ng-show="custom">
                   <div class="tap-inner-block stores-block" ng-if="isAndroid">
                     <h3>Supported App Stores</h3>
                     <div class="tap-inner-btns clr" id="stores-template">
-                      <label ng-if="isDesctop" ng-click="checkStore(1); itunes" ng-class="{active:store=='itunes'}">iTunes</label>
-                      <label ng-click="checkStore(2); googlePlay" ng-class="{active:store=='googlePlay'}">Google Play</label>
-                      <label ng-click="checkStore(3); amazon" ng-class="{active:store=='amazon'}">Amazon</label>
-                      <label ng-click="checkStore(4); wandoujia" ng-class="{active:store=='wandoujia'}">Wandoujia</label>
-                      <label ng-click="checkStore(5); nook" ng-class="{active:store=='nook'}">Nook</label>
+                      <label ng-if="isDesctop" ng-click="checkStore(1)" ng-class="{active:stores=='1'}">iTunes</label>
+                      <label ng-click="checkStore(2)" ng-class="{active:stores=='2'}">Google Play</label>
+                      <label ng-click="checkStore(3)" ng-class="{active:stores=='3'}">Amazon</label>
+                      <label ng-click="checkStore(4)" ng-class="{active:stores=='4'}">Wandoujia</label>
+                      <label ng-click="checkStore(5)" ng-class="{active:stores=='5'}">Nook</label>
                     </div>
                   </div>
 
@@ -57,13 +68,15 @@
                   <div class="tap-inner-block dispTemplate-block">
                     <h3>Display Style</h3>
                     <div class="tap-inner-btns clr" id="displayTemplate">
-                      <label ng-click="hiddenScreen='true'" for="check-simple">Simple</label>
-                      <label ng-click="hiddenScreen='false'" for="check-colorful">Colorful</label>
+                      <label ng-click="hiddenScreen('true')" ng-class="{active:hideImgs=='true'}">Simple</label>
+                      <label ng-click="hiddenScreen('false')" ng-class="{active:hideImgs=='false'}">Colorful</label>
                     </div>
                   </div>
                 </div><!-- /.tap-menu-block -->
             </li>
-            <li ng-click="menuItems('about')" ng-class="{active:menuItem=='about'}"><a href="http://www.airomo.com/" ng-click="hiddenMenu=''; tapMenu=''" title="">About</a></li>
+            <li ng-click="menuItems('about')" ng-class="{active:item=='about'}">
+              <a href="http://www.airomo.com/" ng-click="menu=''; tapMenu=''" title="">About</a>
+            </li>
           </ul>
         </div>
         
@@ -94,7 +107,7 @@
   <!--<script type="text/javascript" src="js/jquery.history.js"></script>-->
   <script src="bower_components/angular/angular.js"></script>
   <!--<script type='text/javascript' src='js/ng-infinite-scroll.min.js'></script>-->
-  <!--<script src="js/angular.ratings.js"></script>  -->
+  <script src="js/directives/angular.ratings.js"></script>  
   <script src="bower_components/angular-route/angular-route.js"></script>
 
   <script src="js/services/services.js"></script>

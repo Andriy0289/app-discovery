@@ -36,6 +36,6 @@
         templateUrl: 'partials/tags-details.html',
         controller: 'TagsDetailsCtrl'
       })
-      .otherwise({redirectTo: '/search'});
+      .otherwise({redirectTo: '/explore'});
   });
 })();
