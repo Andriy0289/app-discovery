@@ -7,7 +7,9 @@
     'filters',
     'services',
     'directives',
-    'controllers'
+    'controllers',
+    'masonryLayout', 
+    'infinite-scroll'
   ])
   .config(function($routeProvider) {
     $routeProvider

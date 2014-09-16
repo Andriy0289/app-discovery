@@ -26,10 +26,16 @@
     <div class="clr"></div>
   </div>
 <!-- </header> -->
+<!-- 
+<container-apps>
+  <app ng-repeat="app in apps"></app>
+</container-apps>
+ -->
 
-<div id="main-holder" class="clr">
-  <!-- <div infinite-scroll='sortApp()'> -->
-  	<div ng-repeat="app in apps" class="the-app">
+<!-- <div id="main-holder" class="clr js-masonry" data-masonry-options='{ "columnWidth": 300, "itemSelector": ".the-app" }'> -->
+<div infinite-scroll="sortApp()" infinite-scroll-distance="0" style="display:inline-block; width:100%; height:100%">
+  <div id="main-holder" data-masonry data-x-margin="10" data-y-margin="10" data-img-width="300">
+    <div ng-repeat="app in apps" class="the-app" on-render>
       <div class="app-data-row">
         <div class="app-icon-holder">
           <a href="{{app.nativeUrl}}" target="_blank">
@@ -37,27 +43,25 @@
           </a>
         </div>
         <div class="app-data-text" style="">
-          <div class="app-title"><a href="{{app.nativeUrl}}" target="_blank">{{app.title | limitTo:13}}...</a></div>
+          <div class="app-title"><a href="{{app.nativeUrl}}" target="_blank">{{app.title | limitTo:16 }}</a></div>
           <div class="app-data">
-            <a onclick="" class="app-price"><span>{{app.price}}</span></a>
+            <a href="{{app.nativeUrl}}" class="app-price green-price" ng-if="app.price == 0" target="_blank">
+              <span>Free</span>
+            </a>
+            <a href="{{app.nativeUrl}}" class="app-price red-price" ng-if="app.price != 0" target="_blank">
+              <span>${{app.price}}</span>
+            </a>
           </div> 
         </div>
-      <div class="clr"></div>
+        <div class="clr"></div>
       </div> 
-      <!-- <div class="app-screenshot" ng-if="hideImgs"> -->
-      <div class="app-screenshot">
+      <div class="app-screenshot" ng-model="screens">
         <img src="{{app.screenshots[0]}}"> 
       </div>
       <div class="app-description">
-        <div class="app-rating">
-          <!-- <angular-ratings ng-model="avg_rating"></angular-ratings> -->
-          <!-- <div class="rating" rating score="app.rating" max="5"> -->
-            <!-- <angular-ratings ng-model="rating"> -->
-            <!-- <angular-ratings ng-model="app.rating"></angular-ratings> -->
-            <!-- <div rating score="app.rating" max="5"> -->
-            {{app.rating}}
-          <!-- </div> -->
-        </div>{{app.description | limitTo:90}}...</div>
+        <div star-rating rating-value="app.rating" max="5" ></div>
+        <div>{{app.description | limitTo:90}}...</div>
+      </div>
     </div>
-  <!-- </div> -->
+  </div>
 </div>

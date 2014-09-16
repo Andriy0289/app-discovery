@@ -199,9 +199,9 @@ header {
   box-sizing:border-box;
 }
 
-.main_menu li:hover a {
-  background: #019cb8;
-}
+.button {background: none;}
+
+.main_menu li:hover a, .main_menu li.active, .button.active {background: #019cb8;}
 
 .main_menu.active {
   display: block;
@@ -306,11 +306,36 @@ header {
   background-color: #fff;
   width: 260px;
   padding: 20px 20px 0;
+  margin-top: 10px;
 }
 
 .the-app .sp-cl {
   background-color: #fbf2cc;
 }
+
+.rating {
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+ul.rating {
+  display: inline-block;
+  margin-top: 10px;
+}
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  color: #dbdbdb;
+}
+.rating .filled {
+  color: #f1c40f;
+}
+
+.green-price {color: green !important;}
+.red-price {color: red !important;}
 
 @media only screen and (max-width: 3000px) {
   .logo-block {
@@ -781,6 +806,8 @@ header {
   -ms-user-select: none;
   user-select: none;
 }
+.go-top {display:none;}
+.go-top.active {display: block;}
 
 .go-top:hover, .go-top:active {
   background-color: #0193ae;
