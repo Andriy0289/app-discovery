@@ -1,0 +1,45 @@
+	<div class="search-block" >
+    <form ng-submit="searchApps()">
+  	  <input type="text" id="query-input" spellcheck="true" ng-model="query" placeholder="Search for apps and games">
+  	  <span class="clear-q" style="display:none;">×</span>
+  	  <div class="default explore" ng-class="showDefault" ng-click="showDefault='hide'">
+  	  	<p>Explore</p>
+        <span></span>
+  	  </div>
+  	  <button type="submit" class="go-btn">
+  	    <img class="search-text-icon" ng-hide="appsProvider.busy" src="img/search.png">
+  	    <img class="search-button-loader" ng-show="appsProvider.busy" src="img/loader.gif">
+  	  </button>
+  	  <div class="clr"></div>
+    </form>
+	</div>
+  <div class="filters-block">
+    <ul class="cat-selector">
+      <li class="l-item cat-apps"><a href="javascript:;" ng-class="{cur:filter=='apps'}" ng-click="filterApp('apps')">Apps</a></li>
+      <li class="l-item cat-games"><a href="javascript:;" ng-class="{cur:filter=='games'}" ng-click="filterApp('games')">Games</a></li>
+    </ul> 
+    <ul class="val-selector">
+      <li class="m-item val-river"><a href="javascript:;" ng-class="{cur:order=='river'}" ng-click="sortApp('river')">River</a></li>
+      <li class="m-item val-popular"><a href="javascript:;" ng-class="{cur:order=='popular'}" ng-click="sortApp('popular')">Popular</a></li>
+      <li class="m-item val-newest"><a href="javascript:;" ng-class="{cur:order=='newest'}" ng-click="sortApp('newest')">Newest</a></li>
+    </ul>
+    <div class="clr"></div>
+  </div>
+<!-- </header> -->
+<!-- 
+<container-apps>
+  <app ng-repeat="app in apps"></app>
+</container-apps>
+ -->
+
+<!-- <div id="main-holder" class="clr js-masonry" data-masonry-options='{ "columnWidth": 300, "itemSelector": ".the-app" }'> -->
+<div infinite-scroll="appsProvider.getMoreApps()"
+      infinite-scroll-disabled="appsProvider.busy"
+      infinite-scroll-distance=".8" 
+      style="display:inline-block; width:100%; height:100%">
+  <div id="main-holder">
+    <div class="app-view" apps-grid></div>
+    <div class="loading-notifier" ng-show="appsProvider.busy">Loading ...</div>
+    <div class="clr"></div>
+  </div>
+</div>

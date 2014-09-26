@@ -1,0 +1,59 @@
+	<div class="search-block" ng-controller="SearchCtrl">
+	  <form ng-submit="searchApps()">
+      <input type="text" id="query-input" spellcheck="true" ng-model="query" placeholder="Search for apps and games">
+      <span class="clear-q" style="display:none;">×</span>
+      <button type="submit" class="go-btn">
+        <img class="search-text-icon" src="img/search.png">
+        <img class="search-button-loader" style="display:none;" src="img/loader.gif">
+      </button>
+      <div class="clr"></div>
+    </form>
+	</div>
+
+  <div class="filters-block">
+    <ul class="cat-selector">
+      <li class="m-item cat-apps"><a href="javascript:;" ng-click="getApp('apps')">Apps</a></li>
+      <li class="m-item cat-games"><a href="javascript:;" ng-click="getApp('games')">Games</a></li>
+      <li class="m-item cat-all"><a href="javascript:;" ng-click="getApp('all')">All</a></li>
+    </ul>
+    <ul class="val-selector">
+      <li class="m-item val-all"><a href="javascript:;" ng-click="sortApp('all')">All</a></li>
+      <li class="m-item val-paid"><a href="javascript:;" ng-click="sortApp('paid')">Paid</a></li>
+      <li class="m-item val-free"><a href="javascript:;" ng-click="sortApp('free')">Free</a></li>
+
+      <!-- <li ng-click="select(datalist)" ng-class="{active: isActive(datalist)}" class="m-item val-all"><a href="javascript:;" ng-click="sortApp('all')">All</a></li>
+
+      <li ng-click="select(datalist)" ng-class="{active: isActive(datalist)}" class="m-item val-paid"><a href="javascript:;" ng-click="sortApp('paid')">Paid</a></li>
+
+      <li ng-click="select(datalist)" ng-class="{active: isActive(datalist)}" class="m-item val-free"><a href="javascript:;" ng-click="sortApp('free')">Free</a></li>
+       -->
+    </ul>
+    <div class="clr"></div>
+  </div>
+<div id="main-holder" class="clr">
+	<div ng-repeat="app in apps" class="the-app">
+    <div class="app-data-row">
+      <div class="app-icon-holder">
+        <a href="{{app.nativeUrl}}" target="_blank">
+          <img src="{{app.icon}}" class="app-icon" width="50" height="50">
+        </a>
+      </div>
+      <div class="app-data-text" style="">
+        <div class="app-title"><a href="{{app.nativeUrl}}" target="_blank">{{app.title | limitTo:13}}...</a></div>
+        <div class="app-data">
+          <a onclick="" class="app-price"><span>{{app.price}}</span></a>
+        </div> 
+      </div>
+    <div class="clr"></div>
+    </div> 
+    <div class="app-screenshot">
+      <img src="{{app.screenshots[0]}}"> 
+    </div>
+    <div class="app-description">
+      <div class="app-rating">
+        <div class="rating">
+          {{app.rating}}
+        </div>
+      </div>{{app.description | limitTo:90}}...</div>
+  </div>
+</div>
